@@ -1,0 +1,7 @@
+data_csv <- read.csv("household_power_consumption.txt", header=T, sep=';', na.strings="?", nrows=2075259, check.names=F, stringsAsFactors=F, comment.char="", quote='\"')
+data_csv$Date <- as.Date(x = data_csv$Date, format = "%d/%m/%Y")
+req_data <- subset(data_csv, subset = (Date >= "2007-02-01" & Date <= "2007-02-02"))
+rm(data_csv)
+hist(req_data$Global_active_power, xlab = "Global Active Power (KiloWatts)", main = "Global Active Power", col = "Red")
+dev.copy(device = png, file = "plot1.png", height = 480, width = 480)
+dev.off()
